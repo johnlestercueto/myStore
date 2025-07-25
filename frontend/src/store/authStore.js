@@ -9,15 +9,15 @@ export const useAuthStore = create((set) => ({
   error: null,
 
   login: async (formData) => {
-    console.log('req :', formData);
+    //console.log('client req :', formData);
     try {
       set({ loading: true, error: null });
       const res = await loginUser(formData);
-      console.log('res :', res)
+      //console.log('server res :', res)
       set({ user: res.user, token: res.token });
       return res
     } catch (err) {
-        console.log('auth store - sign up error :', err)
+        //console.log('auth store - sign up error :', err)
       set({ error: err.response?.data?.message || 'Login failed' });
     } finally {
       set({ loading: false });
@@ -25,15 +25,15 @@ export const useAuthStore = create((set) => ({
   },
 
   signup: async (formData) => {
-    console.log('req :', formData);
+    //console.log('req :', formData);
     try {
       set({ loading: true, error: null });
       const res = await signupUser(formData);
-      console.log('res :', res)
+      //console.log('res :', res)
       set({ user: res.user });
       return res; 
     } catch (err) {
-      console.log('services - sign up error :', err)
+      //console.log('services - sign up error :', err)
       set({ error: err.response?.data?.message || 'Signup failed' });
     } finally {
       set({ loading: false });

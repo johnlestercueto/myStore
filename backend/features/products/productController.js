@@ -25,13 +25,13 @@ exports.createProduct = async (req, res) => {
     
     try {
     const data = req.body;
-    console.log('req :', data) //
+    //console.log('req :', data) //
     
     if(req.file) {
         data.image = req.file.filename;
     }
     const product = await productService.addProduct(data)
-    console.log('res :', product) //
+    //console.log('res :', product) //
 
     res.status(201).json({
         message: 'product created sucessfully',
@@ -39,7 +39,7 @@ exports.createProduct = async (req, res) => {
     })
 
     } catch (error) {
-        console.log('product controller error :', error) //
+        //console.log('product controller error :', error) //
         res.status(500).json({ message: error.message });
     }
 }
