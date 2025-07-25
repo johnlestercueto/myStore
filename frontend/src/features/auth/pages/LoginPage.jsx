@@ -25,11 +25,13 @@ const LogInPage = () => {
     }
   };
 
+  /*
   useEffect(() => {
     if (user) {
       navigate("/"); // Redirect to homepage after login
     }
   }, [user, navigate]);
+  */
 
   return <LogInForm onSubmit={handleLogIn} />;
 };

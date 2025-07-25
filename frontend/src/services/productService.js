@@ -14,15 +14,20 @@ export const createProduct = async (formData) => {
 // READ ALL
 export const getAllProducts = async () => {
   const response = await axios.get(API_URL);
-  console.log("✅ API response:", response.data);
+  //console.log("✅ API response:", response.data);
   return response.data.product;
 };
 
 // READ ONE
 export const getProductById = async (id) => {
-  const response = await axios.get(`${API_URL}/${id}`);
-  console.log("API response:", response.data);
+  
+  try {
+    const response = await axios.get(`${API_URL}/${id}`);
+    //console.log("services res :", response.data);
   return response.data;
+  } catch (error) {
+    //console.log('services error :', error)
+  }
 };
 
 // UPDATE
