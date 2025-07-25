@@ -15,6 +15,9 @@ const UserNavBar = () => {
           <Link to="/cart" className="icon-button" title="Cart">
             🛒
           </Link>
+          <Link to="/order" className="icon-button" title="Order">
+            order
+          </Link>
           <Link to="/setting" className="icon-button" title="Settings">
             ⚙️
           </Link>

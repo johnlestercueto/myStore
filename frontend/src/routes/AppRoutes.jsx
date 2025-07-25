@@ -4,6 +4,8 @@ import SignUpPage from "../features/auth/pages/SignUpPage";
 import HomePage from "../pages/Homepage";
 import AddProductPage from "../features/products/pages/AddProductPage";
 import ProductDetails from "../features/products/pages/ProductDetails";
+import AdminLayout from "../layouts/AdminLayout";
+import AdminDashboard from "../pages/AdminDashboard";
 const AppRoutes = () => {
   return (
     <Routes>
@@ -12,7 +14,10 @@ const AppRoutes = () => {
       <Route path="/" element={<HomePage />} />
       <Route path="/product/:id" element={<ProductDetails />} />
 
-      <Route path="/addproduct" element={<AddProductPage />} />
+      <Route path="/admin" element={<AdminLayout />}>
+        <Route index element={<AdminDashboard />} />
+        <Route path="addproduct" element={<AddProductPage />} />
+      </Route>
     </Routes>
   );
 };
