@@ -7,19 +7,25 @@ const LogInPage = () => {
   const navigate = useNavigate();
   const login = useAuthStore((state) => state.login);
   const user = useAuthStore((state) => state.user);
+
   const handleLogIn = async (formData) => {
     console.log("login page - handle login :", formData);
     try {
-      const data = await login(formData);
+      const data = await login(formData); // tumatawag sa login function mula sa store
       console.log("handlelogin - data :", data);
 
-      /*
-      if (data.user.role === "admin") {
+      // ⬇️ Kapag admin, i-redirect sa admin dashboard
+      if (data?.user?.role === "admin") {
         navigate("/admin");
-      } else if (data.user.role === "user") {
-        navigate("/");
       }
-      */
+      // ⬇️ Kapag regular user, i-redirect sa homepage
+      else if (data?.user?.role === "user") {
+        navigate("/user");
+      }
+      // ⬇️ Kapag walang role o hindi kilala
+      else {
+        console.warn("Hindi kilalang role ng user:", data?.user?.role);
+      }
     } catch (error) {
       console.log("login page error :", error);
     }
@@ -27,7 +33,11 @@ const LogInPage = () => {
 
   useEffect(() => {
     if (user) {
-      navigate("/"); // Redirect to homepage after login
+      if (user.role === "admin") {
+        navigate("/admin");
+      } else if (user.role === "user") {
+        navigate("/user");
+      }
     }
   }, [user, navigate]);
 
