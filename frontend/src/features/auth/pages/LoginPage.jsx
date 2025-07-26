@@ -20,7 +20,7 @@ const LogInPage = () => {
       }
       // ⬇️ Kapag regular user, i-redirect sa homepage
       else if (data?.user?.role === "user") {
-        navigate("/");
+        navigate("/user");
       }
       // ⬇️ Kapag walang role o hindi kilala
       else {
@@ -36,7 +36,7 @@ const LogInPage = () => {
       if (user.role === "admin") {
         navigate("/admin");
       } else if (user.role === "user") {
-        navigate("/");
+        navigate("/user");
       }
     }
   }, [user, navigate]);

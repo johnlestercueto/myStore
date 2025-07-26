@@ -12,7 +12,7 @@ const AdminLayout = () => {
             <Link to="addproduct"> ADD PRODUCT</Link>
           </li>
           <li>
-            <Link to="/setting">⚙️ Settings</Link>
+            <Link to="adminsetting">⚙️ Settings</Link>
           </li>
         </ul>
       </aside>

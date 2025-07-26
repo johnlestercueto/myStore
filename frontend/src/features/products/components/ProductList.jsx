@@ -25,7 +25,7 @@ const ProductList = () => {
           <div
             key={product._id}
             className="product-card"
-            onClick={() => navigate(`/product/${product._id}`)} // navigate on click
+            onClick={() => navigate(`product/${product._id}`)} // navigate on click
             style={{ cursor: "pointer" }}
           >
             <img

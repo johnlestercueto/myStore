@@ -1,33 +1,35 @@
 import { Routes, Route } from "react-router-dom";
+
 import LoginPage from "../features/auth/pages/LoginPage";
 import SignUpPage from "../features/auth/pages/SignUpPage";
-import HomePage from "../pages/Homepage";
+
 import AddProductPage from "../features/products/pages/AddProductPage";
-import ProductDetails from "../features/products/pages/ProductDetails";
 import AdminLayout from "../layouts/AdminLayout";
 import AdminDashboard from "../pages/AdminDashboard";
+import AdminSetting from "../pages/AdminSetting";
+
+import ProductDetails from "../features/products/pages/ProductDetails";
+import UserLayout from "../layouts/UserLayout";
+import ProductList from "../features/products/components/ProductList";
 import Setting from "../pages/SettingPage";
-import ProtectedRoute from "../components/ProtectedRoute";
+
+import RedirectHandler from "../pages/RedirectHandler"; // <-- import this
+
 const AppRoutes = () => {
   return (
     <Routes>
+      <Route path="/" element={<RedirectHandler />} /> {/* 👈 redirect root */}
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignUpPage />} />
-      <Route path="/" element={<HomePage />} />
-      <Route path="/product/:id" element={<ProductDetails />} />
-
-      <Route
-        path="/setting"
-        element={
-          <ProtectedRoute>
-            <Setting />
-          </ProtectedRoute>
-        }
-      />
-
       <Route path="/admin" element={<AdminLayout />}>
         <Route index element={<AdminDashboard />} />
         <Route path="addproduct" element={<AddProductPage />} />
+        <Route path="adminsetting" element={<AdminSetting />} />
+      </Route>
+      <Route path="/user" element={<UserLayout />}>
+        <Route index element={<ProductList />} />
+        <Route path="product/:id" element={<ProductDetails />} />
+        <Route path="setting" element={<Setting />} />
       </Route>
     </Routes>
   );

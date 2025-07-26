@@ -6,6 +6,7 @@ export const useAuthStore = create((set) => ({
   // ⬇️ Kukunin ang user at token mula sa localStorage kapag nag-refresh
   user: JSON.parse(localStorage.getItem("user")) || null,
   token: localStorage.getItem("token") || null,
+  role: localStorage.getItem("role") || null,
   loading: false,
   error: null,
 
@@ -18,7 +19,7 @@ export const useAuthStore = create((set) => ({
       const res = await loginUser(formData);
 
       // I-set sa Zustand state
-      set({ user: res.user, token: res.token });
+      set({ user: res.user, token: res.token, role: res.user.role });
 
       // ⬇️ I-save sa localStorage para hindi mawawala kapag nag-refresh
       localStorage.setItem("user", JSON.stringify(res.user));
