@@ -8,6 +8,12 @@
   padding: 20px;
 }
 
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
 .product-details img {
   width: 300px;
   height: auto;

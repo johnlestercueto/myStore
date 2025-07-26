@@ -19,6 +19,8 @@ class authServices {
             username: data.username,
             phonenumber: data.phonenumber,
             password: hashedPassword,
+            
+            
         })
 
         // Convert to plain object at tanggalin ang password
