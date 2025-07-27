@@ -6,7 +6,7 @@ export const useAuthStore = create((set) => ({
   // ⬇️ Kukunin ang user at token mula sa localStorage kapag nag-refresh
   user: JSON.parse(localStorage.getItem("user")) || null,
   token: localStorage.getItem("token") || null,
-  role: localStorage.getItem("role") || null,
+  
   loading: false,
   error: null,
 
@@ -40,9 +40,7 @@ export const useAuthStore = create((set) => ({
       const res = await signupUser(formData);
       set({ user: res.user });
 
-      // Opsyonal: isave ang user sa localStorage
-      localStorage.setItem("user", JSON.stringify(res.user));
-
+      
       return res;
     } catch (err) {
       set({ error: err.response?.data?.message || 'Signup failed' });

@@ -1,7 +1,21 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuthStore } from "../store/authStore"; // adjust path as needed
 import { Link, Outlet } from "react-router-dom";
 import "./UserLayout.css";
 
 const UserLayout = () => {
+  const { user, token } = useAuthStore();
+  const navigate = useNavigate();
+
+  // 🔐 Check role before showing the layout
+  useEffect(() => {
+    if (!token || !user) return;
+    if (user.role !== "user") {
+      navigate("/unauthorized");
+    }
+  }, [token, user, navigate]);
+
   return (
     <div>
       <nav className="navbar">
