@@ -9,10 +9,10 @@ const LogInPage = () => {
   const user = useAuthStore((state) => state.user);
 
   const handleLogIn = async (formData) => {
-    console.log("login page - handle login :", formData);
+    //console.log("login page - handle login :", formData);
     try {
       const data = await login(formData); // tumatawag sa login function mula sa store
-      console.log("handlelogin - data :", data);
+      //console.log("handlelogin - data :", data);
 
       // ⬇️ Kapag admin, i-redirect sa admin dashboard
       if (data?.user?.role === "admin") {
@@ -24,7 +24,7 @@ const LogInPage = () => {
       }
       // ⬇️ Kapag walang role o hindi kilala
       else {
-        console.warn("Hindi kilalang role ng user:", data?.user?.role);
+        //console.warn("Hindi kilalang role ng user:", data?.user?.role);
       }
     } catch (error) {
       console.log("login page error :", error);
