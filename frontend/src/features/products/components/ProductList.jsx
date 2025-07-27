@@ -1,17 +1,20 @@
 // src/components/ProductList.jsx
 import { useEffect } from "react";
 import { useProductStore } from "../../../store/productStore";
+import { useAuthStore } from "../../../store/authStore";
 import { useNavigate } from "react-router-dom";
 import "./ProductList.css"; // import mo ang custom CSS file
 
 const ProductList = () => {
   const { products, loading, error, getProducts } = useProductStore();
+  const token = useAuthStore((state) => state.token);
   const navigate = useNavigate();
   //console.log("productlist products", products);
 
   useEffect(() => {
+    if (!token) return;
     getProducts(); // fetch on mount
-  }, [getProducts]);
+  }, [getProducts, token]);
 
   if (loading) return <p className="loading">Loading...</p>;
   if (error) return <p className="error">Error: {error}</p>;

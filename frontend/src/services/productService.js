@@ -5,24 +5,39 @@ const API_URL = "http://localhost:5000/api/product"; // adjust based sa backend 
 
 // CREATE
 export const createProduct = async (formData) => {
+   const token = localStorage.getItem("token");
   const response = await axios.post(API_URL, formData, {
-    headers: { "Content-Type": "multipart/form-data" }, // kung may image
+    headers: { 
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${token}`,
+     }, // kung may image
   });
   return response.data;
 };
 
 // READ ALL
 export const getAllProducts = async () => {
-  const response = await axios.get(API_URL);
+  const token = localStorage.getItem("token");
+  //console.log('token :',token)
+  const response = await axios.get(API_URL, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   //console.log("✅ API response:", response.data);
+  
   return response.data.product;
 };
 
 // READ ONE
 export const getProductById = async (id) => {
-  
+  const token = localStorage.getItem("token");
   try {
-    const response = await axios.get(`${API_URL}/${id}`);
+    const response = await axios.get(`${API_URL}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     //console.log("services res :", response.data);
   return response.data;
   } catch (error) {
