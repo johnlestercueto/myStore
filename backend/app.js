@@ -18,5 +18,6 @@ app.use(morgan('dev'));
 // routes
 app.use('/api/auth', require('./features/auth/authRoute'));
 app.use('/api/product', require('./features/products/productRoute'))
+app.use('/api/cart', require('./features/cart/cartRoute'))
 
 module.exports = app;

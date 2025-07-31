@@ -1,4 +1,4 @@
-const ProductRepository = require('../products/productRepository')
+const ProductRepository = require('./productRepository')
 
 
 

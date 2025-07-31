@@ -62,6 +62,10 @@ class authServices {
         }
         
     }
+
+    async getAllUser() {
+        return await authRepository.findAll()
+    }
 }
 
 module.exports = new authServices();
